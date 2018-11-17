@@ -28,6 +28,7 @@ Servo us_servo;
 
 enum Task {
 	INIT_WAIT,
+	POSITION_SELF,
 	DODGE_EDGE,
 	FIND_TARGET,
 	CHARGE
@@ -50,7 +51,10 @@ void setup() {
 
 	pinMode(TRIGGER_PIN, OUTPUT);
 	pinMode(ECHO_PIN, INPUT);
-	pinMode(IR_PIN, INPUT);
+	pinMode(IR_FL_PIN, INPUT);
+	pinMode(IR_FR_PIN, INPUT);
+	pinMode(IR_BL_PIN, INPUT);
+	pinMode(IR_BR_PIN, INPUT);
 	us_servo.attach(US_SERVO_PIN);
 	us_servo.write(90);
 }
@@ -124,9 +128,18 @@ void loop() {
 		if (millis() < 3000) {
 			delay(1);
 		} else {
-			task = FIND_TARGET;
+			task = POSITION_SELF;
 			digitalWrite(LEFT_FORWARD_PIN, HIGH);
 			digitalWrite(RIGHT_FORWARD_PIN, HIGH);
+		}
+		break;
+
+	case POSTION_SELF:
+		digitalWrite(LEFT_FORWARD_PIN, HIGH);
+		digitalWrite(RIGHT_FORWARD_PIN, HIGH);
+		delay(1);
+		if (millis() > 4000) {
+			task = FIND_TARGET;
 		}
 		break;
 
