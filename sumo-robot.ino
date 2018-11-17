@@ -134,7 +134,7 @@ void loop() {
 		}
 		break;
 
-	case POSTION_SELF:
+	case POSITION_SELF:
 		digitalWrite(LEFT_FORWARD_PIN, HIGH);
 		digitalWrite(RIGHT_FORWARD_PIN, HIGH);
 		delay(1);
