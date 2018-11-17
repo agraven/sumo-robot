@@ -135,8 +135,8 @@ void loop() {
 		break;
 
 	case POSITION_SELF:
-		digitalWrite(LEFT_FORWARD_PIN, HIGH);
-		digitalWrite(RIGHT_FORWARD_PIN, HIGH);
+		digitalWrite(LEFT_BACKWARD_PIN, HIGH);
+		digitalWrite(RIGHT_BACKWARD_PIN, HIGH);
 		delay(1);
 		if (millis() > 4000) {
 			task = FIND_TARGET;
